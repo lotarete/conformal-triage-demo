@@ -1134,10 +1134,13 @@ def main():
     st.markdown(f"""
     <div style="text-align:center; margin-top:3rem; padding:2rem 1.5rem; background:{BG_CARD}; border:1px solid {BORDER}; border-radius:2px;">
         <p style="font-family:'DM Sans',sans-serif; font-weight:500; font-size:1.1rem; color:{TEXT_PRIMARY}; margin:0 0 0.5rem 0;">
-            Your model is overconfident too. Want to find out by how much?
+            Your model is overconfident too. Want me to find out by how much?
         </p>
-        <p style="font-family:'DM Sans',sans-serif; font-size:0.88rem; color:{TEXT_MUTED}; margin:0;">
-            <a href="https://www.linkedin.com/in/lotta-lorette-kalmaru/" target="_blank" style="color:{EMERALD}; text-decoration:none;">Let's talk on LinkedIn &rarr;</a>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.88rem; color:{EMERALD}; margin:0 0 0.4rem 0;">
+            <a href="mailto:lotta.lorette@gmail.com" style="color:{EMERALD}; text-decoration:none;">lotta.lorette@gmail.com</a>
+        </p>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.75rem; color:{TEXT_MUTED}; margin:0;">
+            One weekend. No retraining.
         </p>
     </div>
     """, unsafe_allow_html=True)
