@@ -4,7 +4,7 @@ A live demo showing how conformal prediction turns an overconfident LLM into a s
 
 GPT-4o-mini classifies patient symptoms into 4 triage levels. It's 94% confident even when it's wrong. Conformal prediction wraps the model with calibrated uncertainty — building prediction sets that include all plausible triage levels instead of betting on a single answer.
 
-**[Live Demo →](https://accountable-medical-triage.streamlit.app)**
+**[Live Demo →](https://conformal-triage-demo.streamlit.app/)**
 
 ## What it does
 
