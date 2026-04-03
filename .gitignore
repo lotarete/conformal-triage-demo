@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Environment
+.env
+.venv/
+env/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local-only files (reports, build artifacts, pilot experiments)
+_local/
+
+# Technical plan and TODO (kept locally)
+docs/TECHNICAL_PLAN.md
+docs/TODO.md
+
+# Data generation scripts & intermediate artifacts (kept locally)
+data/GENERATE_SYNTHETIC_TRIAGE_DATA.md
+data/GENERATION_SUMMARY.md
+data/SAMPLE_CASES.md
+data/generate_synthetic_triage_data.py
+data/validate_data.py
+data/cached_logits.json
+data/generation_metadata.json
+data/validation_report.txt
+data/final_validation_report.txt
+data/precompute_summary.json

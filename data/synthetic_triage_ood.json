@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "symptom_description": "63yo F: Describes extreme sensitivity to light and sound, mentions vision 'like a cat in dark', pupil dilation noted",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 2,
+    "symptom_description": "29yo M: Reports compulsive hoarding behaviors, preference for underground 'den-like' spaces, primarily nocturnal sleep pattern",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 3,
+    "symptom_description": "59yo F: Describes extreme sensitivity to light and sound, mentions vision 'like a cat in dark', pupil dilation noted",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 4,
+    "symptom_description": "48yo M: Describes extreme sensitivity to light and sound, mentions vision 'like a cat in dark', pupil dilation noted",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 5,
+    "symptom_description": "67yo M: Describes extreme sensitivity to light and sound, mentions vision 'like a cat in dark', pupil dilation noted",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 6,
+    "symptom_description": "20yo M: Reports skin developing scales and yellowish discoloration, states 'reptile-like appearance', reports temperature regulation changes",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 7,
+    "symptom_description": "71yo F: States experiencing bird-like symptoms, claims difficulty localizing sounds, describes attempting echolocation",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 8,
+    "symptom_description": "89yo M: Describes extreme sensitivity to light and sound, mentions vision 'like a cat in dark', pupil dilation noted",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 9,
+    "symptom_description": "93yo M: Reports compulsive hoarding behaviors, preference for underground 'den-like' spaces, primarily nocturnal sleep pattern",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 10,
+    "symptom_description": "56yo M: Describes extreme sensitivity to light and sound, mentions vision 'like a cat in dark', pupil dilation noted",
+    "category": "veterinary",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 11,
+    "symptom_description": "18yo M: Relationship anxiety about new partner, seeks reassurance, functions normally otherwise, no acute distress",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 12,
+    "symptom_description": "18yo M: Chronic insomnia for years, reports sleeping 3-4 hours nightly, appears functional at work despite fatigue",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 13,
+    "symptom_description": "65yo F: Social anxiety about parties and crowds, avoids large gatherings, normal function in familiar settings",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 14,
+    "symptom_description": "31yo M: Excessive worry about future, states 'always been anxious', denies panic attacks, manages job well",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 15,
+    "symptom_description": "93yo F: Social anxiety about parties and crowds, avoids large gatherings, normal function in familiar settings",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 16,
+    "symptom_description": "22yo M: Relationship anxiety about new partner, seeks reassurance, functions normally otherwise, no acute distress",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 17,
+    "symptom_description": "40yo M: Chronic insomnia for years, reports sleeping 3-4 hours nightly, appears functional at work despite fatigue",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 18,
+    "symptom_description": "88yo M: Mild OCD compulsions around organizing, requires 30 minutes extra, no significant life disruption",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 19,
+    "symptom_description": "91yo M: Chronic insomnia for years, reports sleeping 3-4 hours nightly, appears functional at work despite fatigue",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 20,
+    "symptom_description": "66yo M: Mild OCD compulsions around organizing, requires 30 minutes extra, no significant life disruption",
+    "category": "psychiatric",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 21,
+    "symptom_description": "37yo M: Canker sore on cheek, painful. Eating soft foods. No systemic symptoms. Appeared 3 days ago.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 22,
+    "symptom_description": "34yo F: Toothache in molar with chewing pain. Brushing normally tolerated. No fever. Denies recent trauma.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 23,
+    "symptom_description": "25yo M: Bleeding gums with brushing. Recent tartar buildup noted. No loose teeth. No pain.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 24,
+    "symptom_description": "82yo M: Canker sore on cheek, painful. Eating soft foods. No systemic symptoms. Appeared 3 days ago.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 25,
+    "symptom_description": "85yo F: Toothache in molar with chewing pain. Brushing normally tolerated. No fever. Denies recent trauma.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 26,
+    "symptom_description": "44yo M: Bleeding gums with brushing. Recent tartar buildup noted. No loose teeth. No pain.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 27,
+    "symptom_description": "84yo F: Canker sore on cheek, painful. Eating soft foods. No systemic symptoms. Appeared 3 days ago.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 28,
+    "symptom_description": "28yo M: Bleeding gums with brushing. Recent tartar buildup noted. No loose teeth. No pain.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 29,
+    "symptom_description": "73yo F: Toothache in molar with chewing pain. Brushing normally tolerated. No fever. Denies recent trauma.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 30,
+    "symptom_description": "60yo M: Toothache in molar with chewing pain. Brushing normally tolerated. No fever. Denies recent trauma.",
+    "category": "dental",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 31,
+    "symptom_description": "74yo F: Spider veins on legs. Cosmetic concern. No pain. Denies swelling. Wants removal options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 32,
+    "symptom_description": "70yo F: Spider veins on legs. Cosmetic concern. No pain. Denies swelling. Wants removal options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 33,
+    "symptom_description": "23yo M: Wrinkles and age spots on face. Cosmetic concerns. Asking about available options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 34,
+    "symptom_description": "64yo F: Wrinkles and age spots on face. Cosmetic concerns. Asking about available options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 35,
+    "symptom_description": "24yo M: Wrinkles and age spots on face. Cosmetic concerns. Asking about available options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 36,
+    "symptom_description": "56yo F: Spider veins on legs. Cosmetic concern. No pain. Denies swelling. Wants removal options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 37,
+    "symptom_description": "67yo M: Acne scarring on cheeks. Desires dermatology referral. Asking about treatment options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 38,
+    "symptom_description": "66yo M: Wrinkles and age spots on face. Cosmetic concerns. Asking about available options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 39,
+    "symptom_description": "90yo F: Hair thinning at crown, cosmetic concern. Denies recent illness. Seeking treatment referral options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 40,
+    "symptom_description": "49yo F: Spider veins on legs. Cosmetic concern. No pain. Denies swelling. Wants removal options.",
+    "category": "cosmetic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 41,
+    "symptom_description": "19yo F: Workers compensation injury claim filing. Needs baseline documentation. Denies current symptoms.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 42,
+    "symptom_description": "31yo F: Workers compensation injury claim filing. Needs baseline documentation. Denies current symptoms.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 43,
+    "symptom_description": "19yo M: Physical exam needed for CDL renewal. Routine paperwork. Denies any medical problems.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 44,
+    "symptom_description": "45yo F: Workers compensation injury claim filing. Needs baseline documentation. Denies current symptoms.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 45,
+    "symptom_description": "63yo M: Drug test required for new job. Asks for quick screening. Denies medical issues or symptoms.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 46,
+    "symptom_description": "48yo M: Drug test required for new job. Asks for quick screening. Denies medical issues or symptoms.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 47,
+    "symptom_description": "55yo F: Drug test required for new job. Asks for quick screening. Denies medical issues or symptoms.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 48,
+    "symptom_description": "81yo F: Workers compensation injury claim filing. Needs baseline documentation. Denies current symptoms.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 49,
+    "symptom_description": "45yo M: Pre-placement physical for company position. Routine checkbox. Denies complaints. Vitals normal.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 50,
+    "symptom_description": "35yo M: Pre-placement physical for company position. Routine checkbox. Denies complaints. Vitals normal.",
+    "category": "occupational",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 51,
+    "symptom_description": "33yo M: Jellyfish sting on arm from ocean swimming. Mild red marks and slight burning sensation. Denies severe pain.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 52,
+    "symptom_description": "59yo M: Jellyfish sting on arm from ocean swimming. Mild red marks and slight burning sensation. Denies severe pain.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 53,
+    "symptom_description": "55yo F: Snake bite on leg from hiking, species unknown. Minimal swelling noted. Able to walk. Bite 4 hours ago.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 54,
+    "symptom_description": "35yo M: Tropical disease exposure from recent travel. Fever for 2 days. Vague symptoms. Rash developing.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 55,
+    "symptom_description": "87yo F: Tropical disease exposure from recent travel. Fever for 2 days. Vague symptoms. Rash developing.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 56,
+    "symptom_description": "30yo M: Altitude sickness from hiking high elevation. Headache and mild nausea. Descended to lower altitude.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 57,
+    "symptom_description": "59yo F: Decompression sickness after rapid dive ascent. Mild joint pain. Denies LOC. Vitals stable.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 58,
+    "symptom_description": "28yo F: Altitude sickness from hiking high elevation. Headache and mild nausea. Descended to lower altitude.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 59,
+    "symptom_description": "41yo M: Snake bite on leg from hiking, species unknown. Minimal swelling noted. Able to walk. Bite 4 hours ago.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  },
+  {
+    "id": 60,
+    "symptom_description": "51yo M: Tropical disease exposure from recent travel. Fever for 2 days. Vague symptoms. Rash developing.",
+    "category": "rare_exotic",
+    "notes": "Not a standard ED triage presentation"
+  }
+]
