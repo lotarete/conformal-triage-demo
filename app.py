@@ -11,11 +11,13 @@ Architecture:
   - Maison Noire dark theme (see DESIGN_SYSTEM.md)
 
 Sections:
-  1. Hero: Live CP prediction (text input + example buttons)
-  2. Comparison: CP vs raw model — the "31 patients saved" story
-  3. Why This Matters: LLM overconfidence explainer
-  4. Gallery: Curated cases from precomputed data
-  5. Stats: Coverage, accuracy, set sizes (collapsible)
+  1. Hero + The Problem: title, tagline, compact overconfidence framing
+  2. How CP works: side-by-side Without CP / With CP visual
+  3. Try It Live: interactive CP prediction (text input + example buttons)
+  4. CP vs Raw Model: the "31 patients saved" story with annotated stats
+  5. Case Gallery: curated cases from precomputed data
+  6. Under the Hood: confidence deep-dive, dataset explanation, technical details
+  7. Dataset Statistics: coverage, accuracy, set sizes (collapsible)
 
 Author: Lotta-Lorette Kalmaru · 2026
 """
@@ -612,10 +614,57 @@ def main():
     # ── HERO SECTION ────────────────────────────────────────────────
     st.markdown("# Accountable Medical Triage")
     st.markdown("Because a model that says *\"I'm not sure\"* is safer than one that claims 95% confidence even when it's wrong.")
-    st.markdown("This demo uses **conformal prediction (CP)** — a method that builds prediction sets of all classes that look plausible given past data, instead of betting everything on a single answer.")
+
+    # ── THE PROBLEM (compact) ───────────────────────────────────────
+    st.markdown(f"""
+    <div style="background:{BG_CARD}; border:1px solid {BORDER}; border-left:3px solid {BURGUNDY}; border-radius:2px; padding:1.5rem; margin:1rem 0;">
+        <p style="font-family:'DM Sans',sans-serif; font-weight:500; font-size:1.05rem; color:{TEXT_PRIMARY}; margin:0 0 0.75rem 0;">
+            LLMs are structurally overconfident. It's how they're trained.
+        </p>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.7; margin:0;">
+            When LLMs say they're <span style="color:{BURGUNDY};">99% confident, they're right only 65% of the time</span>
+            <a href="https://arxiv.org/abs/2510.26995" target="_blank" style="color:{TEXT_MUTED}; font-size:0.78rem; text-decoration:none;">(Epstein et al., 2025)</a>.
+            Fine for chatbots, dangerous when autonomous agents make real decisions.
+            You can't tell right from wrong by looking at the confidence score alone.
+        </p>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.7; margin:0 0 0.75rem 0;">
+            But there's a way to add a statistical guarantee to how confident a model's outputs really are.
+        </p>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.7; margin:0;">
+            Conformal prediction (CP) doesn't fix the model. It wraps it with a calibrated safety net that
+            <span style="color:{TEXT_PRIMARY};">guarantees the true answer is in the set 90% of the time</span>.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ── WITHOUT CP / WITH CP ────────────────────────────────────────
+    st.markdown(f'<p style="font-family:\'DM Sans\',sans-serif; font-size:0.88rem; color:{TEXT_MUTED}; margin:1.25rem 0 0.5rem 0;">Here, GPT-4o-mini classifies patient symptoms into four triage levels. This is what that looks like with and without CP:</p>', unsafe_allow_html=True)
+
+    st.markdown(f"""
+    <div style="display:flex; gap:1.25rem; margin:0.5rem 0 1.5rem 0;">
+        <div style="flex:1; background:{BG_CARD}; border:1px solid {BORDER}; border-radius:2px; padding:1.25rem;">
+            <div style="font-family:'DM Sans',sans-serif; font-size:0.75rem; color:{TEXT_MUTED}; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.75rem;">Without CP</div>
+            <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_PRIMARY}; margin:0 0 0.5rem 0;">Model says: <strong>gp_visit</strong> <span style="color:{TEXT_MUTED};">(94% confident)</span></p>
+            <p style="font-family:'DM Sans',sans-serif; font-size:0.85rem; color:{TEXT_SECONDARY}; margin:0 0 0.35rem 0;">One guess, no safety net</p>
+            <p style="font-family:'DM Sans',sans-serif; font-size:0.85rem; color:{BURGUNDY}; margin:0 0 0.35rem 0;">Wrong 22% of the time</p>
+            <p style="font-family:'DM Sans',sans-serif; font-size:0.85rem; color:{TEXT_SECONDARY}; margin:0;">You trust the model blindly</p>
+        </div>
+        <div style="flex:1; background:{BG_CARD}; border:1px solid {EMERALD}; border-radius:2px; padding:1.25rem;">
+            <div style="font-family:'DM Sans',sans-serif; font-size:0.75rem; color:{TEXT_MUTED}; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.75rem;">With CP</div>
+            <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_PRIMARY}; margin:0 0 0.5rem 0;">CP says: <strong style="color:{EMERALD};">{{gp_visit, urgent_care}}</strong></p>
+            <p style="font-family:'DM Sans',sans-serif; font-size:0.85rem; color:{TEXT_SECONDARY}; margin:0 0 0.35rem 0;">Flags the higher-risk level the model missed</p>
+            <p style="font-family:'DM Sans',sans-serif; font-size:0.85rem; color:{EMERALD}; margin:0 0 0.35rem 0;">Misses only 12% of the time</p>
+            <p style="font-family:'DM Sans',sans-serif; font-size:0.85rem; color:{TEXT_SECONDARY}; margin:0;">You know when to escalate to a human</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # One-line data context
+    st.markdown(f'<p style="color:{TEXT_MUTED}; font-size:0.82rem; margin-bottom:0.5rem;">Tested on 320 synthetic patient scenarios across 4 triage levels, from self-care to emergency.</p>', unsafe_allow_html=True)
+
     st.markdown("---")
 
-    # ── SECTION 1: LIVE PREDICTION ──────────────────────────────────
+    # ── SECTION: LIVE PREDICTION ──────────────────────────────────
     st.markdown("## Try It Live")
     st.markdown("Enter a patient symptom description. GPT-4o-mini classifies the triage level, and conformal prediction tells you how much to trust that call.")
 
@@ -781,7 +830,7 @@ def main():
                         <tr style="border-bottom:1px solid {BORDER};">
                             <td style="padding:0.6rem 0.75rem; color:{TEXT_SECONDARY};">Threshold</td>
                             <td style="padding:0.6rem 0.75rem; color:{TEXT_PRIMARY};">{threshold_pct:.2f}% <span style="color:{TEXT_MUTED};">(1 - q̂, where q̂ = {q_hat:.4f})</span></td>
-                            <td style="padding:0.6rem 0.75rem; color:{TEXT_SECONDARY};">Any class above 0.41% enters the set. Tiny, but the model shoves nearly all mass onto one class — so 0.41% is a meaningful signal. Calibrated on 480 cases.</td>
+                            <td style="padding:0.6rem 0.75rem; color:{TEXT_SECONDARY};">Any class above 0.41% enters the set. Tiny, but the model shoves nearly all mass onto one class, so 0.41% is a meaningful signal. Calibrated on 480 cases.</td>
                         </tr>
                         <tr style="border-bottom:1px solid {BORDER};">
                             <td style="padding:0.6rem 0.75rem; color:{TEXT_SECONDARY};">Prediction set</td>
@@ -800,6 +849,22 @@ def main():
 
     st.markdown("---")
 
+    # ── ABOUT THE DATA ──────────────────────────────────────────────
+    st.markdown(f"""
+    <div style="background:{BG_CARD}; border:1px solid {BORDER}; border-radius:2px; padding:1.25rem; margin:0 0 1.5rem 0;">
+        <div style="font-family:'DM Sans',sans-serif; font-size:0.75rem; color:{TEXT_MUTED}; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.75rem;">About the Data</div>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.88rem; color:{TEXT_SECONDARY}; line-height:1.7; margin:0 0 0.5rem 0;">
+            800 synthetic patient cases generated with Claude Opus 4.6. Descriptions of symptoms, vitals, and history that mimic real ER triage scenarios.
+        </p>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.88rem; color:{TEXT_SECONDARY}; line-height:1.7; margin:0 0 0.5rem 0;">
+            Each case is labeled with a severity level from the Emergency Severity Index (ESI 1–5), mapped to four triage classes: <span style="color:{EMERALD};">self-care</span>, <span style="color:{AMBER};">GP visit</span>, <span style="color:#FA7923;">urgent care</span>, and <span style="color:{BURGUNDY};">emergency</span>.
+        </p>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.88rem; color:{TEXT_SECONDARY}; line-height:1.7; margin:0;">
+            480 cases calibrate the conformal predictor. The remaining 320 are held out for testing. The model never sees them during calibration. All results below come from these 320 test cases.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
     # ── SECTION 2: THE COMPARISON MOMENT ────────────────────────────
     st.markdown("## CP vs. Raw Model")
     # Compute CP saves count and total wrong
@@ -809,14 +874,17 @@ def main():
 
     st.markdown(f"The model alone gets {accuracy:.0%} of cases right. Add conformal prediction and the true triage level lands in the prediction set {coverage:.0%} of the time. Three patterns show up.")
 
-    # Hero stats
+    # Hero stats with annotations
     stat_cols = st.columns(3)
     with stat_cols[0]:
         st.markdown(render_stat_highlight(f"{accuracy:.1%}", "Model Accuracy"), unsafe_allow_html=True)
+        st.markdown(f'<p style="color:{TEXT_MUTED}; font-size:0.72rem; text-align:center; margin-top:-0.25rem;">Raw model, single best guess</p>', unsafe_allow_html=True)
     with stat_cols[1]:
         st.markdown(render_stat_highlight(f"{coverage:.1%}", "CP Coverage", EMERALD), unsafe_allow_html=True)
+        st.markdown(f'<p style="color:{TEXT_MUTED}; font-size:0.72rem; text-align:center; margin-top:-0.25rem;">True answer in CP\'s prediction set</p>', unsafe_allow_html=True)
     with stat_cols[2]:
         st.markdown(render_stat_highlight(str(cp_saves_count), "Patients Saved", BURGUNDY), unsafe_allow_html=True)
+        st.markdown(f'<p style="color:{TEXT_MUTED}; font-size:0.72rem; text-align:center; margin-top:-0.25rem;">Model wrong, CP caught it</p>', unsafe_allow_html=True)
 
     st.markdown(f'<p style="color:{TEXT_MUTED}; font-size:0.82rem; text-align:center; margin-top:0.5rem;">The model got {n_wrong} out of {n_test} cases wrong. CP caught {cp_saves_count} of those {n_wrong} by including the correct triage level in a wider prediction set.</p>', unsafe_allow_html=True)
 
@@ -897,28 +965,37 @@ def main():
 
     st.markdown("---")
 
-    # ── SECTION 3: WHY THIS MATTERS ─────────────────────────────────
-    st.markdown("## Why This Matters")
+    # ── UNDER THE HOOD ─────────────────────────────────────────────
+    st.markdown("## Under the Hood")
 
     st.markdown(f"""
-    <div style="background:{BG_CARD}; border:1px solid {BORDER}; border-left:3px solid {BURGUNDY}; border-radius:2px; padding:1.5rem; margin:1rem 0;">
-        <p style="font-family:'DM Sans',sans-serif; font-weight:500; font-size:1.05rem; color:{TEXT_PRIMARY}; margin:0 0 0.75rem 0;">
-            LLMs are structurally overconfident. It's how they're trained.
-        </p>
-        <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.7; margin:0 0 0.75rem 0;">
-            GPT-4o-mini assigns <span style="color:{BURGUNDY};">94% confidence even when it's wrong</span> (vs. 98% when right).
-            That's a byproduct of how LLMs are trained. Fine for autocomplete, dangerous for medicine.
-        </p>
-        <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.7; margin:0 0 0.75rem 0;">
-            CP doesn't fix the model. It wraps it with calibrated thresholds that
-            <span style="color:{TEXT_PRIMARY};">guarantee the true answer is in the set 90% of the time</span>.
-        </p>
-        <p style="font-family:'DM Sans',sans-serif; font-size:0.85rem; color:{TEXT_MUTED}; line-height:1.7; margin:0;">
-            Even if it corrects one patient, it's worth it. And it's nearly free: no retraining, no extra
-            model calls. Just a lightweight wrapper that adds accountability where agentic decisions matter.
-        </p>
-    </div>
+    <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.7;">
+        Even if CP corrects one patient, it's worth it. And it's nearly free: no retraining, no extra
+        model calls. Just a lightweight wrapper that adds accountability where agentic decisions matter.
+    </p>
     """, unsafe_allow_html=True)
+
+    # CP in plain English (expandable)
+    with st.expander("What does conformal prediction actually do?"):
+        st.markdown(f"""
+        Your model makes a prediction. CP looks at how "surprising" that prediction is compared to a
+        set of examples where you already know the right answer (the **calibration set**). Based on that,
+        it returns not just the model's top guess, but **every answer that's still plausible**.
+
+        If the model is confident and calibration backs it up, you get one answer. If there's real
+        ambiguity, you get two or three. The key: the correct answer is in that set at least 90% of
+        the time. That's not a hope, it's a statistical guarantee.
+
+        **What you need to use this on any system:**
+
+        - **A nonconformity score.** Any way to measure "how surprising is this outcome." For a classifier that's the probability of the true class. For a RAG system it could be retrieval similarity. For an agent making decisions, it could be how far a decision deviates from historical patterns.
+        - **Calibration data.** A few hundred examples where you know the right answer. They just need to be representative of what your system will see in production.
+        - **A coverage level** you're comfortable with (e.g. 90%). Higher coverage means wider prediction sets but fewer misses.
+
+        That's it. No retraining, no architecture changes, no GPU time. CP sits on top of whatever
+        you already have. Any system that makes the same kind of decision repeatedly — triage,
+        routing, retrieval, approval — is a natural fit.
+        """)
 
     # Confidence comparison visual
     st.markdown(f"""
@@ -942,27 +1019,44 @@ def main():
     """, unsafe_allow_html=True)
 
     # Technical deep-dive (expandable)
-    with st.expander("The technical why: cross-entropy and peaked distributions"):
+    with st.expander("Why are LLMs overconfident?"):
         st.markdown(f"""
-        LLMs are trained with **cross-entropy loss**, which pushes the model to assign maximum probability
-        to the correct next token. Over billions of gradient steps this produces extremely peaked output
-        distributions. The model learns to be maximally confident on every prediction, correct or not.
-
-        This is a training artifact, not a feature. Verbalized confidence ("I'm 90% sure") is even worse since
-        it has no grounding in the actual probability distribution. That's why we extract **raw logprobs** at
-        the classification token.
-
-        The key insight: confidence alone can't distinguish correct from incorrect predictions. Conformal
-        prediction sidesteps this entirely by providing a **distribution-free coverage guarantee** via
-        calibration on held-out data. We also apply conformal methods to temperature scaling (ConfTS) to
-        optimize the probability distribution before building prediction sets — but that's a calibration
-        detail, not the main event. The real value is the coverage guarantee itself.
-        """)
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.8; margin:0 0 1rem 0;">
+            <strong style="color:{TEXT_PRIMARY};">It starts with training.</strong>
+            LLMs are trained with cross-entropy loss, which encourages assigning higher probability to
+            the correct next token. In practice, this can lead to miscalibrated and overconfident
+            predictions. Incorrect outputs may still receive high probability. It's a side effect
+            of what makes LLMs powerful in the first place, not a bug anyone designed in.
+        </p>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.8; margin:0 0 1rem 0;">
+            <strong style="color:{TEXT_PRIMARY};">Logprobs help, but not enough.</strong>
+            Raw log-probabilities are the closest thing to a model's internal confidence. But even
+            logprobs can be miscalibrated. The model can be internally "certain" and still wrong.
+            Verbalized confidence is even worse. When an LLM says "I'm 90% sure," that may not
+            correspond to its internal probabilities at all
+            <a href="https://arxiv.org/abs/2306.13063" target="_blank" style="color:{TEXT_MUTED}; font-size:0.78rem; text-decoration:none;">(Xiong et al., ICLR 2024)</a>.
+        </p>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.8; margin:0 0 1rem 0;">
+            <strong style="color:{TEXT_PRIMARY};">RLHF makes it worse.</strong>
+            Reinforcement learning from human feedback trains models to sound confident because
+            humans prefer decisive answers. The reward model develops an inherent bias toward
+            high-confidence responses regardless of actual quality
+            <a href="https://arxiv.org/abs/2410.09724" target="_blank" style="color:{TEXT_MUTED}; font-size:0.78rem; text-decoration:none;">(Leng et al., 2024)</a>.
+        </p>
+        <p style="font-family:'DM Sans',sans-serif; font-size:0.92rem; color:{TEXT_SECONDARY}; line-height:1.8; margin:0;">
+            <strong style="color:{TEXT_PRIMARY};">The result:</strong>
+            confidence alone cannot reliably distinguish correct from incorrect predictions. Nominal
+            99% confidence intervals cover the truth only 65% of the time
+            <a href="https://arxiv.org/abs/2510.26995" target="_blank" style="color:{TEXT_MUTED}; font-size:0.78rem; text-decoration:none;">(Epstein et al., 2025)</a>.
+            Scaling up doesn't fix it either. Larger models can actually show worse calibration
+            <a href="https://arxiv.org/abs/2502.11028" target="_blank" style="color:{TEXT_MUTED}; font-size:0.78rem; text-decoration:none;">(Chhikara et al., 2025)</a>.
+        </p>
+        """, unsafe_allow_html=True)
 
 
     st.markdown("---")
 
-    # ── SECTION 4: GALLERY ──────────────────────────────────────────
+    # ── CASE GALLERY ────────────────────────────────────────────────
     st.markdown("## Case Gallery")
     st.markdown("Real cases from the test set. Each card shows what the model predicted, what CP added, and what actually happened.")
 
@@ -1038,7 +1132,7 @@ def main():
 
     st.markdown(f'<div style="margin-top:2rem;"></div>', unsafe_allow_html=True)
 
-    # ── SECTION 5: STATS ────────────────────────────────────────────
+    # ── DATASET STATISTICS ──────────────────────────────────────────
     with st.expander("Dataset Statistics"):
         stat_cols = st.columns(4)
         with stat_cols[0]:
@@ -1134,7 +1228,7 @@ def main():
     st.markdown(f"""
     <div style="text-align:center; margin-top:3rem; padding:2rem 1.5rem; background:{BG_CARD}; border:1px solid {BORDER}; border-radius:2px;">
         <p style="font-family:'DM Sans',sans-serif; font-weight:500; font-size:1.1rem; color:{TEXT_PRIMARY}; margin:0 0 0.5rem 0;">
-            Your model is overconfident too. Want me to find out by how much?
+            Can your autonomous agents tell when they're not confident?
         </p>
         <p style="font-family:'DM Sans',sans-serif; font-size:0.88rem; color:{EMERALD}; margin:0 0 0.4rem 0;">
             <a href="mailto:lotta.lorette@gmail.com" style="color:{EMERALD}; text-decoration:none;">lotta.lorette@gmail.com</a>
